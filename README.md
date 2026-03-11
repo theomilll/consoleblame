@@ -1,6 +1,6 @@
 # consoleblame
 
-![consoleblame](https://i.ibb.co/5WWJwm9Z/image.png)
+![consoleblame](assets/hero.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
