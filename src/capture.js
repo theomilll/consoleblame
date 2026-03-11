@@ -46,7 +46,12 @@ export async function capture({ url, wait = 3000, quiet = false, color = true, c
     });
 
     page.on("pageerror", (err) => {
-      console.log(chalk.red(`[pageerror] ${err.message}`));
+      let suffix = "";
+      if (err.stack) {
+        const match = err.stack.match(/\bat\s+(.*)/);
+        if (match) suffix = chalk.dim(`  ← ${match[1].trim()}`);
+      }
+      console.log(chalk.red(`[pageerror] ${err.message}`) + suffix);
       hasError = true;
     });
 
