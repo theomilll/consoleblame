@@ -7,7 +7,10 @@ Launch headless Chromium, navigate to a URL, and stream browser console output t
 ## Install
 
 ```bash
-# from npm (once published)
+# homebrew
+brew install theomilll/consoleblame/consoleblame
+
+# npm (once published)
 npm install -g consoleblame
 
 # local development

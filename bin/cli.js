@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 
+import { readFileSync } from "fs";
 import { program } from "commander";
 import { capture } from "../src/capture.js";
+
+const pkg = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8")
+);
+
+program.version(pkg.version);
 
 program
   .argument("<url>", "URL to navigate to")
