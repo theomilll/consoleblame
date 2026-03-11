@@ -1,0 +1,38 @@
+{
+  "name": "consoleblame",
+  "version": "0.1.0",
+  "description": "Launch headless Chromium, navigate to a URL, and stream browser console output to the terminal",
+  "type": "module",
+  "bin": {
+    "consoleblame": "./bin/cli.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Theo Moura",
+  "license": "MIT",
+  "keywords": [
+    "console",
+    "browser",
+    "headless",
+    "chromium",
+    "debug",
+    "cli",
+    "puppeteer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theomilll/consoleblame.git"
+  },
+  "homepage": "https://github.com/theomilll/consoleblame",
+  "bugs": "https://github.com/theomilll/consoleblame/issues",
+  "files": [
+    "bin/",
+    "src/"
+  ],
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "puppeteer": "^24.6.1"
+  }
+}
