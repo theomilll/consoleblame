@@ -1,19 +1,38 @@
 # consoleblame
 
+![consoleblame](https://i.ibb.co/5WWJwm9Z/image.png)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Launch headless Chromium, navigate to a URL, and stream browser console output to your terminal.
 
 ## Install
 
+### Homebrew
+
 ```bash
-# homebrew
+# 1. Add the tap (registers the custom formula repository)
+brew tap theomilll/consoleblame
+
+# 2. Install (pulls node as a dependency, runs npm install, symlinks the binary)
+brew install consoleblame
+```
+
+Or as a one-liner:
+
+```bash
 brew install theomilll/consoleblame/consoleblame
+```
 
-# npm (once published)
+### npm
+
+```bash
 npm install -g consoleblame
+```
 
-# local development
+### Local development
+
+```bash
 git clone https://github.com/theomilll/consoleblame.git
 cd consoleblame && npm install && npm link
 ```
