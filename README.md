@@ -1,10 +1,14 @@
 # consoleblame
 
-![consoleblame](assets/hero.png)
+<img src="assets/hero.png" alt="consoleblame" width="300">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Launch headless Chromium, navigate to a URL, and stream browser console output to your terminal.
+
+## Why
+
+I got a little annoyed at how AI agents have to spin up a whole separate browser just to check console logs, and how I'd have to manually copy stuff over myself. So I made this CLI tool that lets you check browser console output straight from your terminal. Figured it might be useful for someone else too, so here it is.
 
 ## Install
 
