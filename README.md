@@ -53,6 +53,14 @@ consoleblame <url> [options]
 |------|-------------|---------|
 | `-w, --wait <ms>` | Grace period after page load | `3000` |
 | `-q, --quiet` | Only show errors and warnings | |
+| `--json` | Output newline-delimited JSON | |
+| `--wait-until <strategy>` | `load\|domcontentloaded\|networkidle0\|networkidle2` | `networkidle0` |
+| `-e, --eval <expr>` | JS expression to evaluate after wait (repeatable) | |
+| `--fail-on <types>` | Comma-separated: `error,warning,pageerror,requestfailed,httperror,4xx,5xx,eval-error,eval-falsy` | `error,pageerror` |
+| `-t, --timeout <ms>` | Total execution timeout in ms | |
+| `--max-events <n>` | Cap output to N events | |
+| `--filter <regex>` | Regex filter on event text | |
+| `--no-summary` | Suppress summary line | |
 | `-b, --cookie <cookie...>` | Cookies as `name=value` | |
 | `-u, --username <user>` | Login username | |
 | `-p, --password <pass>` | Login password | |
@@ -66,14 +74,38 @@ consoleblame <url> [options]
 
 | Code | Meaning |
 |------|---------|
-| `0` | No errors |
-| `1` | `console.error`, page error, or fatal failure |
+| `0` | No errors detected (per `--fail-on`) |
+| `1` | Matched a `--fail-on` condition or fatal failure |
 
 ### Examples
 
 ```bash
 # basic usage
 consoleblame https://example.com
+
+# structured JSON output, pipe to jq
+consoleblame --json https://example.com | jq '.args'
+
+# faster return on simple pages (no long-polling wait)
+consoleblame --wait-until load https://example.com
+
+# evaluate JS after page load
+consoleblame -e "document.title" -e "window.location.href" https://example.com
+
+# JSON eval results
+consoleblame --json -e "document.title" https://example.com | jq 'select(.kind=="eval")'
+
+# fail on errors, HTTP errors, or 4xx responses
+consoleblame --fail-on error,httperror,4xx https://example.com
+
+# bounded output with hard timeout (great for agents/CI)
+consoleblame --max-events 10 -t 10000 --json -q https://example.com
+
+# filter for specific patterns
+consoleblame --filter "error|warn" -q https://example.com
+
+# exit-code only, no output noise
+consoleblame -q --no-summary https://example.com
 
 # wait longer, errors only
 consoleblame https://example.com -w 10000 -q

@@ -1,6 +1,6 @@
 {
   "name": "consoleblame",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Launch headless Chromium, navigate to a URL, and stream browser console output to the terminal",
   "type": "module",
   "bin": {
